@@ -3,12 +3,20 @@ interface User {
     name: string;
 }
 
-// Esta clase viola el Principio de Responsabilidad Única (SRP)
+class Mailer {
+
+    sendEmail() {
+        console.log('Enviando correo a los usuarios');
+    }
+
+}
+
 class UserBloc {
 
-    notifyUser() {
-        // Simula el envío de notificaciones
-        console.log('Enviando correo a los usuarios');
+    private mailer = new Mailer();
+
+    notifyUser(){
+        this.mailer.sendEmail();
     }
 
 }
@@ -34,6 +42,7 @@ class UserService {
     }
 
 }
+
 
 const userBloc = new UserBloc();
 const subscriptionBloc = new SubscriptionBloc();
