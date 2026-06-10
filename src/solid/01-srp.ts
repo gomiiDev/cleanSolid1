@@ -13,7 +13,14 @@ class Mailer {
 
 class UserBloc {
 
-    private mailer = new Mailer();
+    constructor(
+        private userService: UserService,
+        private mailer: Mailer
+    ) {}
+
+    getUser( id: number ) {
+        this.userService.loadUser( id );
+    }
 
     notifyUser(){
         this.mailer.sendEmail();
@@ -44,9 +51,9 @@ class UserService {
 }
 
 
-const userBloc = new UserBloc();
-const subscriptionBloc = new SubscriptionBloc();
 const userService = new UserService();
+const userBloc = new UserBloc( userService, new Mailer() );
+const subscriptionBloc = new SubscriptionBloc();
 
 userService.loadUser(10);
 userService.saveUser({ id: 10, name: 'Fernando' });
