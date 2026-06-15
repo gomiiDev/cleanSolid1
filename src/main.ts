@@ -1,3 +1,2 @@
 import './style.css'
-
-console.log('Hola Mundo');
+import './solid/01-srp';
